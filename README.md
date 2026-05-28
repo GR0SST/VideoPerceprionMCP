@@ -4,7 +4,7 @@ Bun-based MCP server for analyzing video with fal's OpenRouter video endpoint.
 
 ## Features
 
-- MCP tools: `analyze_video`, `extract_frame`
+- MCP tools: `analyze_video`, `extract_frame`, `extract_frames`, `video_info`
 - Accepts public video URLs, supported YouTube links, data URIs, or local video paths
 - Uploads local files to fal storage automatically
 - Uses `google/gemini-3-flash-preview` by default
@@ -80,5 +80,35 @@ Extract by zero-based frame number:
   "video_path": "/absolute/path/to/video.mp4",
   "mode": "frame",
   "frame_number": 120
+}
+```
+
+Extract multiple frames:
+
+```json
+{
+  "video_path": "/absolute/path/to/video.mp4",
+  "mode": "timestamp",
+  "timestamps": ["00:00:01", "00:00:05.500", "12.5"],
+  "output_dir": "/private/tmp/video-storyboard",
+  "image_format": "png"
+}
+```
+
+Extract multiple frame numbers:
+
+```json
+{
+  "video_path": "/absolute/path/to/video.mp4",
+  "mode": "frame",
+  "frame_numbers": [0, 120, 240]
+}
+```
+
+Read technical video metadata:
+
+```json
+{
+  "video_path": "/absolute/path/to/video.mp4"
 }
 ```
